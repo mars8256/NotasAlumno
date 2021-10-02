@@ -9,7 +9,9 @@ import edu.uspg.model.Alumno;
 import edu.uspg.model.AlumnoCurso;
 import edu.uspg.model.Curso;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -21,34 +23,99 @@ public class NotasAlumno {
     static List<Curso> listaCurso = new ArrayList();
     static List<AlumnoCurso> listaAlumnoCurso = new ArrayList();
     public static Integer notas[] = new Integer[5];
+        
+    static int opcionMenuPrincipal;
+    static public Scanner sc = new Scanner(System.in);
+    
     public static void main(String[] args) {
-       Alumno juan = new Alumno(202011, "Juan", 
-            "Perez", "Escuintla", 
-            0.0, 1, "juan@uspg.edu.gt");
-       Alumno pedro = new Alumno(202011, "Pedro", 
-            "Aguilar", "Escuintla", 
-            0.0, 2, "pedro@uspg.edu.gt");
-       
-       Curso curso = new Curso(1, "Programación II", 
-               "Programación Orientada a Objetos", 
-               5, false, notas);
-       
-        Curso curso2 = new Curso(2, "Física", 
-               "Descripción del curso", 
-               4, false, notas);
-       
-       
-        
-        
-       listaAlumno.add(juan);
-       listaAlumno.add(pedro);
-       
-       listaCurso.add(curso);
-       listaCurso.add(curso2);
-       
-       AlumnoCurso alumnoCurso = new AlumnoCurso(1,juan,listaCurso);
-       
-       listaAlumnoCurso.add(alumnoCurso);
+         menuPrincipal();
     }
+    
+    public static void menuPrincipal(){
+        
+        System.out.println("MENÚ");
+        System.out.println("================");
+        System.out.println("1. GRABAR CURSO");
+        System.out.println("2. GRABAR ALUMNO");
+        System.out.println("3. ASOCIAR ALUMNO CURSO");
+        System.out.println("4. CURSOS EXISTENTES");
+        System.out.println("5. SALIR");
+        
+        System.out.println("Seleccione su opción:");
+        opcionMenuPrincipal = sc.nextInt();
+        
+        switch(opcionMenuPrincipal){
+        
+            case 1:
+                grabarCurso();
+                break;
+            case 2:
+                //grabar alumno
+                break;
+            case 3:
+                //asociar alumno curso
+                break;
+            case 4:
+                cursosExistentes();
+                break;
+            case 5:
+                //salir
+                break;
+            default:
+                System.out.println("opción no encontrada");
+                break;
+        }
+                
+        
+    }
+    
+    public static void grabarCurso(){
+  
+        Curso curso;
+        
+        Integer idCurso;
+        String nombre;
+        String descripcion;
+        Integer creditos;
+        boolean aprobado = true;
+               
+        System.out.println("Ingrese idCurso:");
+        idCurso = sc.nextInt();
+        
+        System.out.println("Ingrese nombre:");
+        nombre = sc.next();
+        
+        System.out.println("Ingrese creditos:");
+        creditos = sc.nextInt();
+        
+        System.out.println("Ingrese descripcion:");
+        descripcion = sc.next();
+        
+        curso = new Curso(idCurso,nombre,descripcion,creditos,aprobado,notas);
+        
+        listaCurso.add(curso);
+        
+        System.out.println("mensaje grabado correctamente.");
+        menuPrincipal();
+    }
+    
+    public static void cursosExistentes(){
+        Iterator<Curso> iteratorCurso = listaCurso.iterator();
+        Curso curso;
+        System.out.println(listaCurso.size()); 
+        
+        System.out.println("\t\tLISTA DE CURSOS");
+        System.out.println("=======================================");
+        System.out.println("codigo\t\tnombre\t\tcreditos");
+        while(iteratorCurso.hasNext()){
+            curso = iteratorCurso.next();
+            System.out.println(curso.idCurso + "\t\t" + 
+                    curso.nombre + "\t\t" + 
+                    curso.creditos);
+        }
+        
+        menuPrincipal();
+    }
+    
     
 }
