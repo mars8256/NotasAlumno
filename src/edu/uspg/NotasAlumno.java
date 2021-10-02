@@ -50,15 +50,21 @@ public class NotasAlumno {
                 grabarCurso();
                 break;
             case 2:
-                //grabar alumno
+                grabarAlumno();
                 break;
             case 3:
-                //asociar alumno curso
+                asociarAlumnoCurso();
                 break;
             case 4:
                 cursosExistentes();
                 break;
             case 5:
+                listaAlumnoCursosAsociados();
+                break;
+            case 6:
+                ingresarNotas();
+                break;
+            case 7:
                 //salir
                 break;
             default:
@@ -117,5 +123,12 @@ public class NotasAlumno {
         menuPrincipal();
     }
     
+    public static void grabarAlumno(){}
     
-}
+    public static void asociarAlumnoCurso(){}
+    
+    public static void listaAlumnoCursosAsociados(){}
+    
+    public static void ingresarNotas(){}
+    
+} 
